@@ -11,21 +11,20 @@ from src.DimondPricePrediction.logger import logging
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OrdinalEncoder,StandardScaler
+from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
 from src.DimondPricePrediction.utils.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts','preprocessor.pkl')
+    preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
 
 
 class DataTransformation:
     def __init__(self):
-        self.data_transformation_config=DataTransformationConfig()
+        self.data_transformation_config = DataTransformationConfig()
 
         
-    
     def get_data_transformation(self):
         
         try:
@@ -43,7 +42,7 @@ class DataTransformation:
             logging.info('Pipeline Initiated')
             
             ## Numerical Pipeline
-            num_pipeline=Pipeline(
+            num_pipeline = Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='median')),
                 ('scaler',StandardScaler())
@@ -53,18 +52,18 @@ class DataTransformation:
             )
             
             # Categorigal Pipeline
-            cat_pipeline=Pipeline(
+            cat_pipeline = Pipeline(
                 steps=[
-                ('imputer',SimpleImputer(strategy='most_frequent')),
-                ('ordinalencoder',OrdinalEncoder(categories=[cut_categories,color_categories,clarity_categories])),
+                ('imputer', SimpleImputer(strategy='most_frequent')),
+                ('ordinalencoder',OrdinalEncoder(categories = [cut_categories,color_categories,clarity_categories])),
                 ('scaler',StandardScaler())
                 ]
 
             )
             
-            preprocessor=ColumnTransformer([
-            ('num_pipeline',num_pipeline,numerical_cols),
-            ('cat_pipeline',cat_pipeline,categorical_cols)
+            preprocessor = ColumnTransformer([
+            ('num_pipeline', num_pipeline, numerical_cols),
+            ('cat_pipeline', cat_pipeline, categorical_cols)
             ])
             
             return preprocessor
@@ -73,7 +72,7 @@ class DataTransformation:
             
             
         
-        except Exception as e:
+        except  Exception as e:
             logging.info("Exception occured in the initiate_datatransformation")
 
             raise customexception(e,sys)
@@ -81,8 +80,8 @@ class DataTransformation:
     
     def initialize_data_transformation(self,train_path,test_path):
         try:
-            train_df=pd.read_csv(train_path)
-            test_df=pd.read_csv(test_path)
+            train_df = pd.read_csv(train_path)
+            test_df = pd.read_csv(test_path)
             
             logging.info("read train and test data complete")
             logging.info(f'Train Dataframe Head : \n{train_df.head().to_string()}')
