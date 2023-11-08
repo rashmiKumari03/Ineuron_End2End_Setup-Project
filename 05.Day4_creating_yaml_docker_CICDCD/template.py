@@ -16,6 +16,7 @@ list_of_files=[
     f"src/{package_name}/logger.py",
     f"src/{package_name}/exception.py",
     f"src/{package_name}/utils/__init__.py",
+    f"src/{package_name}/utils/utils.py",
     "notebooks/research.ipynb",
     "notebooks/data/.gitkeep",
     "requirements.txt",
