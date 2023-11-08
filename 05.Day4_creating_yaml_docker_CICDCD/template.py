@@ -5,23 +5,30 @@ package_name="DimondPricePrediction"
 
 list_of_files=[
     "github/workflows/.gitkeep",
+
     f"src/{package_name}/__init__.py",
+
     f"src/{package_name}/components/__init__.py",
     f"src/{package_name}/components/data_ingestion.py",
     f"src/{package_name}/components/data_transformation.py",
     f"src/{package_name}/components/model_trainer.py",
+
     f"src/{package_name}/pipelines/__init__.py",
     f"src/{package_name}/pipelines/training_pipeline.py",
     f"src/{package_name}/pipelines/prediction_pipeline.py",
-    f"src/{package_name}/logger.py",
-    f"src/{package_name}/exception.py",
+
+    
     f"src/{package_name}/utils/__init__.py",
     f"src/{package_name}/utils/utils.py",
+
+
+    f"src/{package_name}/logger.py",
+    f"src/{package_name}/exception.py",
 
     "notebooks/research.ipynb",
     "notebooks/EDA.ipynb",
     "notebooks/model_training.ipynb",
-    
+
     "notebooks/data/.gitkeep",
     "requirements.txt",
     "setup.py",
